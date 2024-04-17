@@ -49,6 +49,7 @@ App features: <CRUD>
 
 
 -------------------------------------------------
+Miro board https://miro.com/app/board/uXjVKTWkW5o=/
 -------------------------------------------------
 Notes:
 
