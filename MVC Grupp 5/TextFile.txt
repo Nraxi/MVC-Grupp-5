@@ -3,20 +3,50 @@
 Meeting morning 09:15 (we can decide which time)
 
 Functions: CRUD
-1	Vehicle must be able to park - Checkin  and Checkout (create and delete);
-2	Vehicle can be able to be Editable after checkin(edit/update);
+1	Vehicle must be able to park - Checkin  and Checkout (create and delete)(POST and DELETE);
+2	Vehicle can be able to be Editable after checkin (edit/update)(PUT)(add type, color);
 3	Time and Date on create MUST NOT be editable;
-4	Vehicle's data can be compleated after Checkin(model, color...);
-5	Read - display list of checkin vehicles;
+	Time and Date: adds in automaticaly on checkin;
+4	Vehicle's data can be compleated after Checkin (model, color...);
+5	Read - display list of checkin vehicles: Vehicle Type, RegNr, TimeAndDate (choose which properties should display)(GET);
+6	Read - display list for one vehicle with all informations about the respectively vehicle(Model, Color)(GET Id);
+7	Receipt diplay info:
+		- RegNr;
+		- Parked period as time;
+		- Checkout time;
+		- Price;
+		- nice to have(friendly text message);
+
+		- think that receipt should be a new component;
+8	StartPage - View_Layout - (instructions for user, not create just park, not delete just checkout);
+
+9	Validation: 
+		- limit the string length [MaxLength = "10", MinLength = "3"];
+		- RegNr [MaxLength = "6", MinLength = "3"];
+		- Vehicle[NO MINUS values];
+10	View page - ViewModel with database table of all vehicles;
+
+11	Filter
+
+
+	Create Seed;
+
 
 
 Required:
-RegNr - id;
-Vehicle Type(we can start with one type) -  dropdown;
+RegNr - id/Key;
+Vehicle Type(we can start with one type):
+	- dropdown;
+	- No Edit;
 
 Optional:
 Model;
 Color;
 
+"
+Översiktsvyn ska vara en sida som visar lite kortare information om alla parkerade fordon. 
+Landing page är den sidan vi kommer in på när vi går in på hemsidan och där får lite information om garaget i sig. 
+Det är rent praktiskt två olika saker. 
+"
 
 
