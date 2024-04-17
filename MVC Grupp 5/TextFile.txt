@@ -1,1 +1,22 @@
-﻿
+﻿Plan Parked Vehicle:
+
+Meeting morning 09:15 (we can decide which time)
+
+Functions: CRUD
+1	Vehicle must be able to park - Checkin  and Checkout (create and delete);
+2	Vehicle can be able to be Editable after checkin(edit/update);
+3	Time and Date on create MUST NOT be editable;
+4	Vehicle's data can be compleated after Checkin(model, color...);
+5	Read - display list of checkin vehicles;
+
+
+Required:
+RegNr - id;
+Vehicle Type(we can start with one type) -  dropdown;
+
+Optional:
+Model;
+Color;
+
+
+
