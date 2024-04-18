@@ -54,15 +54,17 @@ namespace MVC_Grupp_5.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("RegNr,Model,Color,VehicleType,CheckInVehicle")] Vehicle vehicle)
+        public async Task<IActionResult> Create([Bind("RegNr,Model,Color,VehicleType")] Vehicle vehicle)
         {
+            //todo CheckInVehicle - automaticaly
             if (ModelState.IsValid)
             {
+                vehicle.CheckInVehicle = DateTime.Now;
                 _context.Add(vehicle);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(vehicle);
+            return View("ParckedVehicle", vehicle);
         }
 
         // GET: Vehicles/Edit/5
