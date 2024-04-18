@@ -23,6 +23,15 @@ namespace MVC_Grupp_5.Controllers
             return View();
         }
 
+        public IActionResult AnnanFunc(int id) {
+            return Receipt(id);
+        }
+        private IActionResult Receipt(int id)
+        {
+            ViewData["Id"] = id;
+            return View("Receipt");
+        }
+
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {

@@ -42,7 +42,7 @@ namespace MVC_Grupp_5.Migrations
 
                     b.HasKey("RegNr");
 
-                    b.ToTable("Vehicle");
+                    b.ToTable("Vehicle", (string)null);
                 });
 #pragma warning restore 612, 618
         }

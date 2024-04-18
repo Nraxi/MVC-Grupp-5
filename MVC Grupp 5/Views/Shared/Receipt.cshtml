@@ -1,0 +1,28 @@
+﻿@model List<MVC_Grupp_5.Models.Vehicle>
+@{
+     int id = (int)ViewData["Id"];
+}
+
+<div class="receipt">
+    <h2>Kvitto</h2>
+    <p>Ditt id: @id </p>
+    <div class="receipt-info">
+        @if (Model == null || Model.Count == 0)
+        {
+            <p>Inga fordon hittades.</p>
+        }
+        else
+        {
+            @foreach (var vehicle in Model)
+            {
+                <div class="vehicle-info">
+                    <p><strong>Registreringsnummer:</strong> @vehicle.RegNr</p>
+                    <p><strong>Modell:</strong> @vehicle.Model</p>
+                    <p><strong>Färg:</strong> @vehicle.Color</p>
+                    <p><strong>Fordonstyp:</strong> @vehicle.VehicleType</p>
+                    <p><strong>Incheckat fordon:</strong> @vehicle.CheckInVehicle</p>
+                </div>
+            }
+        }
+    </div>
+</div>
