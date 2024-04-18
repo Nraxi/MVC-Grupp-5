@@ -18,6 +18,7 @@ namespace MVC_Grupp_5.Controllers
             return View();
         }
 
+
         //public IActionResult Privacy()
         //{
         //    return View();
