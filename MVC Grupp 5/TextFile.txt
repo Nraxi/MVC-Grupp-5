@@ -29,7 +29,7 @@ App features: <CRUD>
 8	Validation: 
 		- limit the string length [MaxLength = "10", MinLength = "3"];
 		- RegNr [MaxLength = "6", MinLength = "3"];
-		- Vehicle[NO MINUS values];
+		?- Vehicle[NO MINUS values];
 		Required:
 			RegNr - id/Key;
 			Vehicle Type(we can start with one type):
