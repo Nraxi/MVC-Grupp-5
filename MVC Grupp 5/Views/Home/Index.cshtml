@@ -1,8 +1,44 @@
-﻿@{
+﻿@model IEnumerable<MVC_Grupp_5.Models.Vehicle>
+@{
     ViewData["Title"] = "Home Page";
 }
 
 <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <h1 class="display-4">Welcome to the ParkedVehicle</h1>
+<div class="container">
+    <div class="row">
+        <div class="col-12 col-sm-12 col-md-6 col-lg-6 p-3 d-flex justify-content-center">
+            <div class="card shadow primary-bg-color text-about">
+                    <h2 class="heading1"><i class=""></i> <a href="/Vehicles/Create">Check In your vehicle</a></h2>
+                <p class="text-center my-auto">
+                    
+                </p>
+            </div>
+        </div>
+@*         <div class="col-12 col-sm-12 col-md-6 col-lg-6 p-3 d-flex justify-content-center primary-bg-color">
+            <img src="" alt="" class="">
+        </div> *@
+    </div>
+    <div class="row">
+        <div class="col-12 col-sm-12 col-md-6 col-lg-6 p-3 d-flex justify-content-center">
+            <div class="card shadow primary-bg-color text-about">
+                    <h2 class="heading1"><i class="f"></i> <a href="#">Display all parked vehicles.</a></h2>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12 col-sm-12 col-md-6 col-lg-6 p-3 d-flex justify-content-center">
+            <div class="card shadow primary-bg-color text-about">
+                    <h2 class="heading1"><i class=""></i> <a href="#">Update info for your parked vehicle.</a></h2>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12 col-sm-12 col-md-6 col-lg-6 p-3 d-flex justify-content-center">
+            <div class="card shadow primary-bg-color text-about">
+                    <h2 class="heading1"><i class=""></i> <a href="#">Check out your vehicle.</a></h2>
+            </div>
+        </div>
+    </div>
 </div>
+

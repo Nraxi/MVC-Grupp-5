@@ -6,22 +6,23 @@ namespace MVC_Grupp_5.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+        //private readonly ILogger<HomeController> _logger;
 
-        public HomeController(ILogger<HomeController> logger)
-        {
-            _logger = logger;
-        }
+        //public HomeController(ILogger<HomeController> logger)
+        //{
+        //    _logger = logger;
+        //}
 
         public IActionResult Index()
         {
             return View();
         }
 
-        public IActionResult Privacy()
-        {
-            return View();
-        }
+
+        //public IActionResult Privacy()
+        //{
+        //    return View();
+        //}
 
         public IActionResult AnnanFunc(int id) {
             return Receipt(id);
