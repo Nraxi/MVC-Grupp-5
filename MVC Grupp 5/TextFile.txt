@@ -16,7 +16,7 @@ App features: <CRUD>
 
 5	Display List for One Vehicle with all informations about the respectively vehicle(Model, Color)(GET Id);
 
-6	Receipt diplay info:
+6	Receipt diplay info: basic logic done
 		- RegNr;
 		- Parked period DateTime;
 		- Checkout time;
