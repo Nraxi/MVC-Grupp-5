@@ -5,7 +5,10 @@ Meeting morning 09:15 (we can decide which time)
 App features: <CRUD>
 EM 1	Vehicle must be able to park - Checkin (create)(POST);
 
-Olle Vehicle must be able to Checkout (DELETE incl Reciept)(DELETE)
+Olle 1. Vehicle must be able to Checkout (DELETE incl Reciept)(DELETE)
+
+
+
 2	Vehicle can be able to be Edit/Update after checkin: (edit/update)(PUT)(add type, color);
 		Vehicle's data can be compleated after Checkin (model, color...);
 
