@@ -14,7 +14,7 @@ namespace MVC_Grupp_5.Models
         [Display(Name = "Vehicle Type")]
         public VehicleType VehicleType { get; set; }
         [DataType(DataType.Date)]
-        [Display(Name = "Check In Parking Date")]
+        [Display(Name = "Check In / Parking Date")]
         public DateTime CheckInVehicle { get; set; }
 
 
