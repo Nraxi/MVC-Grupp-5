@@ -1,7 +1,10 @@
 ﻿@model List<MVC_Grupp_5.Models.DeleteConfirmationViewModel>
+@{
+    ViewData["Title"] = "Receipt";
+}
 
 <div class="receipt">
-    <h2>Kvitto</h2>
+    <h2>Receipt</h2>
     @foreach (var modelItem in Model)
     {
         <div>
