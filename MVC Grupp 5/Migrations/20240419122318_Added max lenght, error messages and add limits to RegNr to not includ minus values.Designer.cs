@@ -4,6 +4,7 @@ using MVC_Grupp_5.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MVC_Grupp_5.Migrations
 {
     [DbContext(typeof(MVC_Grupp_5Context))]
-    partial class MVC_Grupp_5ContextModelSnapshot : ModelSnapshot
+    [Migration("20240419122318_Added max lenght, error messages and add limits to RegNr to not includ minus values")]
+    partial class AddedmaxlenghterrormessagesandaddlimitstoRegNrtonotincludminusvalues
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
