@@ -7,7 +7,7 @@
 <h1>See all parked vehicles</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create">Check In New Vehicle</a>
 </p>
 <table class="table">
     <thead>
@@ -49,9 +49,9 @@
                 @Html.DisplayFor(modelItem => item.CheckInVehicle)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.RegNr">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.RegNr">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.RegNr">Delete</a>
+                <a asp-action="Edit" asp-route-id="@item.RegNr">Upadate info</a> |
+                <a asp-action="Details" asp-route-id="@item.RegNr">Vehicle Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.RegNr">Check Out</a>
             </td>
         </tr>
 }
