@@ -149,14 +149,18 @@ namespace MVC_Grupp_5.Controllers
             {
                 return NotFound();
             }
-
+            
             var vehicle = await _context.Vehicle
                 .FirstOrDefaultAsync(m => m.RegNr == id);
+            
             if (vehicle == null)
             {
                 return NotFound();
             }
-
+            TimeSpan formattedParkedTime = DateTime.Now - vehicle.CheckInVehicle;
+            int roundedSeconds = (int)Math.Round(formattedParkedTime.TotalSeconds);
+            formattedParkedTime = TimeSpan.FromSeconds(roundedSeconds);
+            ViewBag.ParkedTime = formattedParkedTime.ToString();
             return View(vehicle);
         }
 
