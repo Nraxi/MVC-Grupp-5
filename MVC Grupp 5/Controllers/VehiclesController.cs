@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using MVC_Grupp_5.Data;
 using MVC_Grupp_5.Models;
@@ -20,10 +15,29 @@ namespace MVC_Grupp_5.Controllers
         }
 
         // GET: Vehicles
+        //public async Task<IActionResult> Index()
+        //{
+        //    return View(await _context.Vehicle.ToListAsync());
+        //}
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Vehicle.ToListAsync());
+            var vehicles = await _context.Vehicle.ToListAsync();
+            return View(vehicles);
         }
+
+        //public async Task<IActionResult> Index()
+        //{
+        //    var model = _context.Vehicle.Select(v => new Vehicle
+        //    {
+        //        RegNr = v.RegNr,
+        //        Model = v.Model,
+        //        Color = v.Color,
+        //        VehicleType = v.VehicleType,
+        //        CheckInVehicle = v.CheckInVehicle,
+
+        //    });
+        //    return View("Index", await model.ToListAsync());
+        //}
 
         // GET: Vehicles/Details/5
         public async Task<IActionResult> Details(string id)
@@ -40,13 +54,13 @@ namespace MVC_Grupp_5.Controllers
                 return NotFound();
             }
 
-            return View("ParckedVehicle", vehicle);
+            return View(vehicle);
         }
 
         // GET: Vehicles/Create
         public IActionResult Create()
         {
-            return View();
+            return View(new Vehicle());
         }
 
         // POST: Vehicles/Create
@@ -60,11 +74,21 @@ namespace MVC_Grupp_5.Controllers
             if (ModelState.IsValid)
             {
                 vehicle.CheckInVehicle = DateTime.Now;
+                if(string.IsNullOrWhiteSpace(vehicle.RegNr))
+                {
+                    ModelState.AddModelError("RegNr", "Registration number is required");
+                    return View("Index", vehicle);
+                }
+                if (vehicle.RegNr.Contains("-"))
+                {
+                    ModelState.AddModelError("RegNr", "Registration number can not contain negative values");
+                    return View("Index", vehicle);
+                }
                 _context.Add(vehicle);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View("ParckedVehicle", vehicle);
+            return View("Index", vehicle);
         }
 
         // GET: Vehicles/Edit/5
@@ -125,14 +149,18 @@ namespace MVC_Grupp_5.Controllers
             {
                 return NotFound();
             }
-
+            
             var vehicle = await _context.Vehicle
                 .FirstOrDefaultAsync(m => m.RegNr == id);
+            
             if (vehicle == null)
             {
                 return NotFound();
             }
-
+            TimeSpan formattedParkedTime = DateTime.Now - vehicle.CheckInVehicle;
+            int roundedSeconds = (int)Math.Round(formattedParkedTime.TotalSeconds);
+            formattedParkedTime = TimeSpan.FromSeconds(roundedSeconds);
+            ViewBag.ParkedTime = formattedParkedTime.ToString();
             return View(vehicle);
         }
 
