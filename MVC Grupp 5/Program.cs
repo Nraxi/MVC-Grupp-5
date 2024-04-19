@@ -36,7 +36,7 @@ namespace MVC_Grupp_5
                 pattern: "{controller=Home}/{action=Index}/{id?}");
             app.MapControllerRoute(
                 name: "annanFunc",
-                pattern: "{controller=Home}/{action=AnnanFunc}/{id?}");
+               pattern: "{controller=Home}/{action=AnnanFunc}/{RegNr?}");
 
             app.Run();
         }

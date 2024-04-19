@@ -1,6 +1,8 @@
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using MVC_Grupp_5.Models;
 using System.Diagnostics;
+using MVC_Grupp_5.Data;
 
 namespace MVC_Grupp_5.Controllers
 {
@@ -23,13 +25,21 @@ namespace MVC_Grupp_5.Controllers
         //{
         //    return View();
         //}
+        private readonly MVC_Grupp_5Context _context;
 
-        public IActionResult AnnanFunc(int id) {
-            return Receipt(id);
-        }
-        private IActionResult Receipt(int id)
+        public HomeController(MVC_Grupp_5Context context) // Injicera din DbContext i konstruktorn
         {
-            ViewData["Id"] = id;
+            _context = context;
+        }
+
+        public IActionResult AnnanFunc(string lol) {
+
+         
+           return Receipt(lol);
+        }
+        private IActionResult Receipt(string id)
+        {
+            ViewData["RegNr"] = id;
             return View("Receipt");
         }
 

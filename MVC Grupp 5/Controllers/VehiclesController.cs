@@ -139,16 +139,26 @@ namespace MVC_Grupp_5.Controllers
         // POST: Vehicles/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+
+      
         public async Task<IActionResult> DeleteConfirmed(string id)
         {
             var vehicle = await _context.Vehicle.FindAsync(id);
             if (vehicle != null)
             {
+               
                 _context.Vehicle.Remove(vehicle);
             }
 
             await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+
+            if ()
+            {
+                return view(());
+            }else{
+                return RedirectToAction(nameof(Index));
+            }
+         
         }
 
         private bool VehicleExists(string id)
