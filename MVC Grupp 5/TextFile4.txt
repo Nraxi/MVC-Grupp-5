@@ -1,0 +1,20 @@
+
+Home Page have the below menu:
+- Check In
+- See all vehicles
+- See a vehicle
+- Fill in / update with more details to an already check in vehicle
+- CheckOut - Receipt
+	
+Actions:
+	A. Create - checkIn 1+3+8+10
+	B. Read - Dispaly vehicles 4+5+9
+	C. Edit - Update vehicle 2+8 - B
+	D. Delete - checkOut 1+3+6 -B
+
+Home page with links
+Seed
+
+home
+create
+UI - 

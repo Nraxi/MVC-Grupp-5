@@ -40,7 +40,7 @@ namespace MVC_Grupp_5.Controllers
                 return NotFound();
             }
 
-            return View(vehicle);
+            return View("ParckedVehicle", vehicle);
         }
 
         // GET: Vehicles/Create
