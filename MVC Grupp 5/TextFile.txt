@@ -3,7 +3,7 @@
 Meeting morning 09:15 (we can decide which time)
 
 App features: <CRUD>
-1	Vehicle must be able to park - Checkin  and Checkout (create and delete)(POST and DELETE);
+EM 1	Vehicle must be able to park - Checkin  and Checkout (create and delete)(POST and DELETE);
 
 2	Vehicle can be able to be Edit/Update after checkin: (edit/update)(PUT)(add type, color);
 		Vehicle's data can be compleated after Checkin (model, color...);
@@ -11,12 +11,12 @@ App features: <CRUD>
 3	Time and Date on create MUST NOT be editable;
 		Time and Date: adds on checkin and checkout automaticaly;
 
-4	Display List of all checkin Vehicles: Vehicle Type, RegNr, TimeAndDate (choose which properties should display)(GET);
+Bara 4	Display List of all checkin Vehicles: Vehicle Type, RegNr, TimeAndDate (choose which properties should display)(GET);
 		View page - ViewModel with database table of all vehicles(info of every vehicle)(Översiktsvyn);
 
-5	Display List for One Vehicle with all informations about the respectively vehicle(Model, Color)(GET Id);
+Bara 5	Display List for One Vehicle with all informations about the respectively vehicle(Model, Color)(GET Id);
 
-6	Receipt diplay info: basic logic done
+Olle 6	Receipt diplay info:
 		- RegNr;
 		- Parked period DateTime;
 		- Checkout time;
@@ -24,9 +24,9 @@ App features: <CRUD>
 		- nice to have(friendly text message);
 		- think that receipt should be a new component;
 
-7	StartPage - View_Layout - (instructions for user, not create just park, not delete just checkout, friendly text);
+EM 7	StartPage - View_Layout - (instructions for user, not create just park, not delete just checkout, friendly text);
 
-8	Validation: 
+EM 8	Validation: 
 		- limit the string length [MaxLength = "10", MinLength = "3"];
 		- RegNr [MaxLength = "6", MinLength = "3"];
 		?- Vehicle[NO MINUS values];

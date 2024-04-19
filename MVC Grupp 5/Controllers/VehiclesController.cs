@@ -40,7 +40,7 @@ namespace MVC_Grupp_5.Controllers
                 return NotFound();
             }
 
-            return View(vehicle);
+            return View("ParckedVehicle", vehicle);
         }
 
         // GET: Vehicles/Create
@@ -54,15 +54,17 @@ namespace MVC_Grupp_5.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("RegNr,Model,Color,VehicleType,CheckInVehicle")] Vehicle vehicle)
+        public async Task<IActionResult> Create([Bind("RegNr,Model,Color,VehicleType")] Vehicle vehicle)
         {
+            //todo CheckInVehicle - automaticaly
             if (ModelState.IsValid)
             {
+                vehicle.CheckInVehicle = DateTime.Now;
                 _context.Add(vehicle);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(vehicle);
+            return View("ParckedVehicle", vehicle);
         }
 
         // GET: Vehicles/Edit/5
@@ -137,17 +139,80 @@ namespace MVC_Grupp_5.Controllers
         // POST: Vehicles/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+
         public async Task<IActionResult> DeleteConfirmed(string id)
         {
             var vehicle = await _context.Vehicle.FindAsync(id);
-            if (vehicle != null)
+            if (vehicle == null)
             {
-                _context.Vehicle.Remove(vehicle);
+                return NotFound();
             }
 
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            var confirmationViewModel = new DeleteConfirmationViewModel
+            {
+                VehicleId = id,
+                RegNr = vehicle.RegNr,
+                Model = vehicle.Model,
+                Color = vehicle.Color,
+                VehicleType = vehicle.VehicleType.ToString(), // Assuming VehicleType is an enum and you want to display its string representation
+                CheckInVehicle = vehicle.CheckInVehicle
+            };
+            return View("~/Views/Receipt/ConfirmReceipt.cshtml", confirmationViewModel); // Skicka DeleteConfirmationViewModel till vyn
         }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+
+
+        public IActionResult ConfirmReceipt(DeleteConfirmationViewModel viewModel)
+        {
+            var modelList = new List<DeleteConfirmationViewModel>();
+            if (viewModel.ReceiptRequested)
+            {
+                var vehicle = _context.Vehicle.Find(viewModel.VehicleId);
+                if (vehicle != null)
+                {
+
+                    var confirmationViewModel = new DeleteConfirmationViewModel
+                    {
+
+                        // Tilldela andra egenskaper från den hittade bilen
+                        VehicleId = viewModel.VehicleId,
+                        RegNr = vehicle.RegNr,
+                        Model = vehicle.Model,
+                        Color = vehicle.Color,
+                        CheckInVehicle = vehicle.CheckInVehicle,
+                        VehicleType = vehicle.VehicleType.ToString(),
+                    };
+
+                    TimeSpan timeDifference = DateTime.Now - vehicle.CheckInVehicle;
+                    confirmationViewModel.CheckInTimeDifference = timeDifference;
+                    modelList.Add(confirmationViewModel);
+
+
+                    _context.Vehicle.Remove(vehicle);
+                    _context.SaveChanges();
+                    // Lägg till det nya objektet i listan
+                   // modelList.Add(confirmationViewModel);
+                }
+
+                // Skicka användaren till Receipt-sidan med samma värden
+
+                return View("~/Views/Receipt/Receipt.cshtml", modelList);
+            }
+            else
+            {
+                var vehicle = _context.Vehicle.Find(viewModel.VehicleId);
+                if (vehicle != null)
+                {
+                    _context.Vehicle.Remove(vehicle);
+                    _context.SaveChanges();
+                }
+                // Om kvitto inte begärs, gör något annat eller omdirigera någon annanstans
+                return RedirectToAction(nameof(Index));
+            }
+        }
+
+
 
         private bool VehicleExists(string id)
         {
