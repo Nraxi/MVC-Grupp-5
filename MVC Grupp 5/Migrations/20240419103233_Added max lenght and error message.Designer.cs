@@ -4,6 +4,7 @@ using MVC_Grupp_5.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MVC_Grupp_5.Migrations
 {
     [DbContext(typeof(MVC_Grupp_5Context))]
-    partial class MVC_Grupp_5ContextModelSnapshot : ModelSnapshot
+    [Migration("20240419103233_Added max lenght and error message")]
+    partial class Addedmaxlenghtanderrormessage
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -32,12 +35,10 @@ namespace MVC_Grupp_5.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Color")
-                        .HasMaxLength(20)
-                        .HasColumnType("nvarchar(20)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Model")
-                        .HasMaxLength(20)
-                        .HasColumnType("nvarchar(20)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("VehicleType")
                         .HasColumnType("int");
