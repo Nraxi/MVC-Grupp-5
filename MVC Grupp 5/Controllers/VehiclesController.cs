@@ -159,6 +159,8 @@ namespace MVC_Grupp_5.Controllers
             return View(vehicle);
         }
 
+
+        //RÖÖR EJ! 
         // POST: Vehicles/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
@@ -174,18 +176,14 @@ namespace MVC_Grupp_5.Controllers
             var confirmationViewModel = new DeleteConfirmationViewModel
             {
                 VehicleId = id,
-                RegNr = vehicle.RegNr,
-                Model = vehicle.Model,
-                Color = vehicle.Color,
-                VehicleType = vehicle.VehicleType.ToString(), // Assuming VehicleType is an enum and you want to display its string representation
-                CheckInVehicle = vehicle.CheckInVehicle
+                
             };
-            return View("~/Views/Receipt/ConfirmReceipt.cshtml", confirmationViewModel); // Skicka DeleteConfirmationViewModel till vyn
+            return View("~/Views/Receipt/ConfirmReceipt.cshtml", confirmationViewModel); 
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
 
-
+        //RÖÖR EJ! 
         public IActionResult ConfirmReceipt(DeleteConfirmationViewModel viewModel)
         {
             var modelList = new List<DeleteConfirmationViewModel>();
@@ -197,8 +195,7 @@ namespace MVC_Grupp_5.Controllers
 
                     var confirmationViewModel = new DeleteConfirmationViewModel
                     {
-
-                        // Tilldela andra egenskaper från den hittade bilen
+                         // Tilldela andra egenskaper från den hittade fordonet
                         VehicleId = viewModel.VehicleId,
                         RegNr = vehicle.RegNr,
                         Model = vehicle.Model,
@@ -215,7 +212,7 @@ namespace MVC_Grupp_5.Controllers
                     _context.Vehicle.Remove(vehicle);
                     _context.SaveChanges();
                     // Lägg till det nya objektet i listan
-                    // modelList.Add(confirmationViewModel);
+                 
                 }
 
                 // Skicka användaren till Receipt-sidan med samma värden
