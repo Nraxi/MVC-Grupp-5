@@ -36,35 +36,13 @@
             @Html.DisplayFor(model => model.CheckInVehicle)
         </dd>
     </dl>
-   @*  
+   
     <form asp-action="Delete">
         <input type="hidden" asp-for="RegNr" />
         <input type="submit" value="Delete" class="btn btn-danger" /> |
         <a asp-action="Index">Back to List</a>
-    </form> *@
+    </form> 
 
-@*     <form id="deleteForm">
-        <input type="hidden" id="regNr" value="@Model.RegNr" />
-        <input type="submit" value="OK" class="btn btn-danger" /> |
-        <a asp-action="Index">Back to List</a>
-    </form> *@
-    <form asp-action="Delete">
-        <input type="hidden" asp-for="RegNr" />
-        <input type="submit" value="Delete" class="btn btn-danger" /> |
-        <a asp-action="Index">Back to List</a>
-    </form> *@
 
 </div>
-@section Scripts {
-    <script>
-        document.getElementById("deleteForm").addEventListener("submit", function (event) {
-            event.preventDefault(); // Förhindra standardbeteendet för formuläret
 
-            var lol = document.getElementById("regNr").value; // Hämta registreringsnumret
-            console.log(lol);
-
-            // Omdirigera till annan sida efter att värdet har skickats
-            window.location.href = "/Home/AnnanFunc/" + lol;
-        });
-    </script>
-}

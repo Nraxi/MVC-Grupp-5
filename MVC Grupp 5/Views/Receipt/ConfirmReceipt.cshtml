@@ -1,0 +1,16 @@
+﻿@model DeleteConfirmationViewModel
+
+<h2>Confirm Receipt</h2>
+
+<form asp-action="ConfirmReceipt" asp-controller="Vehicles" method="post">
+    <input type="hidden" name="VehicleId" value="@Model.VehicleId" />
+    <div class="form-group">
+        <label>Do you want a receipt?</label>
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" name="ReceiptRequested" value="true" />
+            <label class="form-check-label">Yes</label>
+        </div>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+    <a asp-action="Index">Back to List</a>
+</form>

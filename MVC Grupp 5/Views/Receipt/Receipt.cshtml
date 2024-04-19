@@ -1,0 +1,21 @@
+﻿@model List<MVC_Grupp_5.Models.DeleteConfirmationViewModel>
+
+<div class="receipt">
+    <h2>Kvitto</h2>
+    @foreach (var modelItem in Model)
+    {
+        <div>
+            <p>Vehicle ID: @modelItem.VehicleId</p>
+           @*  <p>Receipt Requested: @modelItem.ReceiptRequested</p> *@
+            <p>Vehicle Model: @modelItem.Model</p>
+            <p>Vehicle Type: @modelItem.VehicleType</p>
+            <p>Color of Vehicle: @modelItem.Color</p>
+            <p>Check in Date/Time: @modelItem.CheckInVehicle</p>
+            <p>Total time Parked : @modelItem.CheckInTimeDifference.Days days, @modelItem.CheckInTimeDifference.Hours hours, @modelItem.CheckInTimeDifference.Minutes minutes</p>
+            <p>Total Cost: @(Math.Round(modelItem.CheckInTimeDifference.TotalMinutes * 10, 2).ToString("0.00")) sek</p>
+
+
+        </div>
+    }
+    <a asp-action="Index">Back to List</a>
+</div>
