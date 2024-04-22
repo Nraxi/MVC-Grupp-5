@@ -246,7 +246,7 @@ namespace MVC_Grupp_5.Controllers
 
             if (string.IsNullOrEmpty(searchString))
             {
-                return View("Index", new List<Vehicle>());
+                return View("Index", _context.Vehicle.ToListAsync());
             }
 
             var vehicles = await _context.Vehicle
@@ -260,7 +260,7 @@ namespace MVC_Grupp_5.Controllers
             if (vehicles.Count == 0)
             {
                 ViewBag.Message = "No vehicles were found 🤷";
-                return View("Index", new List<Vehicle>());
+                return View("Index", _context.Vehicle.ToListAsync());
             }
          
             return View("Index", vehicles);
