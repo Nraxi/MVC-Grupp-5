@@ -44,7 +44,7 @@ EM 8	Validation:
 			Color;
 
 
-9	Filter - Search after RegNr;
+9 Carl	Filter - Search after RegNr;
 			-	Bonus if: sort RegNr descending or ascending.
 
 10	Feedback to user after checkin;
