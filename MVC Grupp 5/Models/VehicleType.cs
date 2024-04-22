@@ -4,6 +4,6 @@
     {
         Car,
         Motorcycle,
-        Airplane
+        Scoter
     }
 }
