@@ -76,25 +76,24 @@ namespace MVC_Grupp_5.Controllers
                 if (existingVehicle != null)
                 {
                     ModelState.AddModelError("RegNr", "This Registration number is already checked in");
-                    ViewData["DuplicateRegNrError"] = "This Registration number is already checked in";
-                    return View(vehicle);
+                    return View("Create", vehicle);
                 }
                 vehicle.CheckInVehicle = DateTime.Now;
                 if(string.IsNullOrWhiteSpace(vehicle.RegNr))
                 {
                     ModelState.AddModelError("RegNr", "Registration number is required");
-                    return View("Index", vehicle);
+                    return View("Create", vehicle);
                 }
                 if (vehicle.RegNr.Contains("-"))
                 {
                     ModelState.AddModelError("RegNr", "Registration number can not contain negative values");
-                    return View("Index", vehicle);
+                    return View("Create", vehicle);
                 }
                 _context.Add(vehicle);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View("Index", vehicle);
+            return View("Create", vehicle);
         }
 
         // GET: Vehicles/Edit/5
