@@ -70,9 +70,15 @@ namespace MVC_Grupp_5.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("RegNr,Model,Color,VehicleType")] Vehicle vehicle)
         {
-            //todo CheckInVehicle - automaticaly
             if (ModelState.IsValid)
             {
+                var existingVehicle = await _context.Vehicle.FirstOrDefaultAsync(v => v.RegNr == vehicle.RegNr);
+                if (existingVehicle != null)
+                {
+                    ModelState.AddModelError("RegNr", "This Registration number is already checked in");
+                    ViewData["DuplicateRegNrError"] = "This Registration number is already checked in";
+                    return View(vehicle);
+                }
                 vehicle.CheckInVehicle = DateTime.Now;
                 if(string.IsNullOrWhiteSpace(vehicle.RegNr))
                 {
