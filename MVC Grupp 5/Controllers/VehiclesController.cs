@@ -246,21 +246,24 @@ namespace MVC_Grupp_5.Controllers
 
             if (string.IsNullOrEmpty(searchString))
             {
-                var vehicles = await _context.Vehicle.ToListAsync();
-                return View("Index", vehicles);
+                return View("Index", new List<Vehicle>());
             }
 
-            var vehicle = await _context.Vehicle
-                .FirstOrDefaultAsync(vehicle => vehicle.RegNr == searchString);
+            var vehicles = await _context.Vehicle
+                    .Where(vehicle =>
+            vehicle.RegNr.Contains(searchString) ||
+            vehicle.Model.Contains(searchString) ||
+            vehicle.Color.Contains(searchString) 
+        )
+        .ToListAsync();
 
-            if (vehicle == null)
+            if (vehicles.Count == 0)
             {
-                var vehicles = await _context.Vehicle.ToListAsync();
-                ViewBag.Message = "No vehicles were found 🤷.";
-                return View("Index", vehicles);
+                ViewBag.Message = "No vehicles were found 🤷";
+                return View("Index", new List<Vehicle>());
             }
-            List<Vehicle> vehicleList = new List<Vehicle> { vehicle };
-            return View("Index", vehicleList);
+         
+            return View("Index", vehicles);
             
         }
     }
