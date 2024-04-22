@@ -7,7 +7,7 @@
 <h1>See all parked vehicles</h1>
 
 <p>
-    <a asp-action="Create">Check in</a>
+    <a asp-action="Create" class="btn btn-primary">Check in your vehicle</a>
 </p>
 
 @* Carls Search Feature *@
@@ -67,9 +67,9 @@
                     @item.CheckInVehicle.ToString("yyyy-MM-dd HH:mm:ss")
                 </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.RegNr">Update info</a> |
-                <a asp-action="Details" asp-route-id="@item.RegNr">Vehicle Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.RegNr">Check Out</a>
+                    <a asp-action="Edit" asp-route-id="@item.RegNr" class="btn btn-secondary">Update info</a> |
+                    <a asp-action="Details" asp-route-id="@item.RegNr" class="btn btn-info">Vehicle Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.RegNr" class="btn btn-danger">Check Out</a>
             </td>
         </tr>
 }
