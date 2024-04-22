@@ -9,6 +9,24 @@
 <p>
     <a asp-action="Create">Check in</a>
 </p>
+
+@* Carls Search Feature *@
+<div>
+    <form asp-controller="Vehicles" asp-action="Search" method="get">
+        <div class="input-group">
+            <input type="text" class="form-control" name="searchString" placeholder="Search...">
+            <div class="input-group-append">
+                <input type="submit" class="btn btn-primary" value="Search">
+            </div>
+        </div>
+        @if (!string.IsNullOrEmpty(ViewBag.Message))
+        {
+            <p class="text-danger">@ViewBag.Message</p>
+        }
+    </form>
+</div>
+@* Carls Search Feature *@
+
 <table class="table">
     <thead>
         <tr>
