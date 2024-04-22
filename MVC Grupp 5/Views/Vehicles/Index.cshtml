@@ -19,10 +19,16 @@
                 <input type="submit" class="btn btn-primary" value="Search">
             </div>
         </div>
-        @if (!string.IsNullOrEmpty(ViewBag.Message))
-        {
-            <p class="text-danger">@ViewBag.Message</p>
+        @if (ViewBag.FilterWasSuccess != null){
+            if (ViewBag.FilterWasSuccess)
+            {
+                <p class="text-success">@ViewBag.Message</p>
+            } else
+            {
+                <p class="text-danger">@ViewBag.Message</p>
+            }
         }
+
     </form>
 </div>
 @* Carl's Search/Filter Feature 🔍 *@
