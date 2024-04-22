@@ -91,10 +91,21 @@ namespace MVC_Grupp_5.Controllers
                 }
                 _context.Add(vehicle);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+
+                //Success message will be dispalyed in CheckInSuccess view
+                TempData["SuccessMessage"] = $"{vehicle.RegNr}: Checked In Successflully";
+
+                return RedirectToAction("CheckInSuccess");
             }
             return View("Create", vehicle);
         }
+
+        public IActionResult CheckInSuccess()
+        {
+            ViewBag.SuccessMessage = TempData["SuccessMessage"];
+            return View("~/Views/FeedbackToUser/CheckInSuccess.cshtml");
+        }
+
 
         // GET: Vehicles/Edit/5
         public async Task<IActionResult> Edit(string id)
