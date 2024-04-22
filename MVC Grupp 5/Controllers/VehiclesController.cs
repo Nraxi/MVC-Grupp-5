@@ -239,5 +239,28 @@ namespace MVC_Grupp_5.Controllers
         {
             return _context.Vehicle.Any(e => e.RegNr == id);
         }
+
+        [HttpGet]
+        public async Task<IActionResult> Search(string searchString)
+        {
+            if (string.IsNullOrEmpty(searchString))
+            {
+                var vehicles = await _context.Vehicle.ToListAsync();
+                return View("Index", vehicles);
+            }
+
+            var vehicle = await _context.Vehicle
+                .FirstOrDefaultAsync(vehicle => vehicle.RegNr == searchString);
+
+            if (vehicle == null)
+            {
+                var vehicles = await _context.Vehicle.ToListAsync();
+                ViewBag.Message = "No vehicle found";
+                return View("Index", vehicles);
+            }
+            List<Vehicle> vehicleList = new List<Vehicle> { vehicle };
+            return View("Index", vehicleList);
+            
+        }
     }
 }
