@@ -255,7 +255,7 @@ namespace MVC_Grupp_5.Controllers
             if (vehicle == null)
             {
                 var vehicles = await _context.Vehicle.ToListAsync();
-                ViewBag.Message = "No vehicle found";
+                ViewBag.Message = "No vehicles were found 🤷.";
                 return View("Index", vehicles);
             }
             List<Vehicle> vehicleList = new List<Vehicle> { vehicle };
