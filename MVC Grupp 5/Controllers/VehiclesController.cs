@@ -93,16 +93,16 @@ namespace MVC_Grupp_5.Controllers
                 await _context.SaveChangesAsync();
 
                 //Success message will be dispalyed in CheckInSuccess view
-                TempData["SuccessMessage"] = $"{vehicle.RegNr}: Checked In Successflully";
+                ViewBag.SuccessMessage = $"{vehicle.RegNr}: Checked In Successflully";
 
-                return RedirectToAction("CheckInSuccess");
+                return RedirectToAction("CheckInSuccess", new {regNr = vehicle.RegNr });
             }
             return View("Create", vehicle);
         }
 
-        public IActionResult CheckInSuccess()
+        public IActionResult CheckInSuccess(string regNr)
         {
-            ViewBag.SuccessMessage = TempData["SuccessMessage"];
+            ViewBag.RegNr = regNr;
             return View("~/Views/FeedbackToUser/CheckInSuccess.cshtml");
         }
 
