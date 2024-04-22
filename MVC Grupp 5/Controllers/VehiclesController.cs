@@ -243,6 +243,7 @@ namespace MVC_Grupp_5.Controllers
         [HttpGet]
         public async Task<IActionResult> Search(string searchString)
         {
+
             if (string.IsNullOrEmpty(searchString))
             {
                 var vehicles = await _context.Vehicle.ToListAsync();
