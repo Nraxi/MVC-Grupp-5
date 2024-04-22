@@ -15,7 +15,7 @@ Olle 1. Vehicle must be able to Checkout (DELETE incl Reciept)(DELETE)
 3 Olle	Time and Date on create MUST NOT be editable;
 		Time and Date: adds on checkin and checkout automaticaly;
 
-Bara 4	Display List of all checkin Vehicles: Vehicle Type, RegNr, TimeAndDate (choose which properties should display)(GET);
+-Mall- 4	Display List of all checkin Vehicles: Vehicle Type, RegNr, TimeAndDate (choose which properties should display)(GET);
 		View page - ViewModel with database table of all vehicles(info of every vehicle)(Översiktsvyn);
 
 Bara 5	Display List for One Vehicle with all informations about the respectively vehicle(Model, Color)(GET Id);
