@@ -10,6 +10,12 @@
     <h4>Vehicle</h4>
     <hr />
     <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.RegNr)
+        </dt>
+        <dt class="col-sm-10">
+            @ViewBag.RegNr;
+        </dt>
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.Model)
         </dt>
@@ -32,11 +38,11 @@
             @Html.DisplayNameFor(model => model.CheckInVehicle)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.CheckInVehicle)
+            @ViewBag.CheckInVehicle;
         </dd>
     </dl>
 </div>
 <div>
-    <a asp-action="Edit" asp-route-id="@Model?.RegNr">Edit</a> |
-    <a asp-action="Index">Back to List of parked vehicles</a>
+    <a asp-action="Edit" asp-route-id="@Model?.RegNr" class="btn btn-secondary">Update info</a> |
+    <a asp-action="Index" class="btn btn-primary">Back to List of parked vehicles</a>
 </div>

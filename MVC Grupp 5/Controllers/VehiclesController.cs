@@ -53,7 +53,8 @@ namespace MVC_Grupp_5.Controllers
             {
                 return NotFound();
             }
-
+            ViewBag.RegNr = vehicle.RegNr;
+            ViewBag.CheckInVehicle = vehicle.CheckInVehicle;
             return View(vehicle);
         }
 
@@ -120,6 +121,9 @@ namespace MVC_Grupp_5.Controllers
             {
                 return NotFound();
             }
+            ViewBag.RegNr = vehicle.RegNr;
+            ViewBag.CheckInVehicle = vehicle.CheckInVehicle;
+
             return View(vehicle);
         }
 
@@ -155,6 +159,7 @@ namespace MVC_Grupp_5.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
+            ViewBag.CheckInVehicle = vehicle.CheckInVehicle;
             return View(vehicle);
         }
 
