@@ -120,6 +120,8 @@ namespace MVC_Grupp_5.Controllers
             {
                 return NotFound();
             }
+            ViewBag.RegNr = vehicle.RegNr;
+            ViewBag.CheckInDate = vehicle.CheckInVehicle;
             return View(vehicle);
         }
 
