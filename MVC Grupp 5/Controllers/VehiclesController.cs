@@ -264,28 +264,33 @@ namespace MVC_Grupp_5.Controllers
         [HttpGet]
         public async Task<IActionResult> Search(string searchString)
         {
-
+            
             if (string.IsNullOrEmpty(searchString))
             {
-                return View("Index", new List<Vehicle>());
+                var vehicleContext = await _context.Vehicle.ToListAsync();
+                ViewBag.FilterWasSuccess = null;
+                return View("Index", vehicleContext);
             }
 
             var vehicles = await _context.Vehicle
                     .Where(vehicle =>
-            vehicle.RegNr.Contains(searchString) ||
-            vehicle.Model.Contains(searchString) ||
-            vehicle.Color.Contains(searchString) 
-        )
-        .ToListAsync();
+                        vehicle.RegNr.Contains(searchString) ||
+                        vehicle.Model.Contains(searchString) ||
+                        vehicle.Color.Contains(searchString)
+                    )
+                    .ToListAsync();
 
             if (vehicles.Count == 0)
             {
+                ViewBag.FilterWasSuccess = false;
                 ViewBag.Message = "No vehicles were found 🤷";
-                return View("Index", new List<Vehicle>());
+                var vehicleContext = await _context.Vehicle.ToListAsync();
+                return View("Index", vehicleContext);
             }
-         
+            ViewBag.FilterWasSuccess = true;
+            ViewBag.Message = $"Found {vehicles.Count} vehicle{(vehicles.Count > 1 ? "s" : "")} 🚗";
             return View("Index", vehicles);
-            
+
         }
     }
 }
