@@ -157,9 +157,9 @@ namespace MVC_Grupp_5.Controllers
                         throw;
                     }
                 }
-                ViewBag.CheckInVehicle = vehicle.CheckInVehicle;
                 return RedirectToAction(nameof(Index));
             }
+            ViewBag.CheckInVehicle = vehicle.CheckInVehicle;
             return View(vehicle);
         }
 
