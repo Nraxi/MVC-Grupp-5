@@ -70,26 +70,42 @@ namespace MVC_Grupp_5.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("RegNr,Model,Color,VehicleType")] Vehicle vehicle)
         {
-            //todo CheckInVehicle - automaticaly
             if (ModelState.IsValid)
             {
+                var existingVehicle = await _context.Vehicle.FirstOrDefaultAsync(v => v.RegNr == vehicle.RegNr);
+                if (existingVehicle != null)
+                {
+                    ModelState.AddModelError("RegNr", "This Registration number is already checked in");
+                    return View("Create", vehicle);
+                }
                 vehicle.CheckInVehicle = DateTime.Now;
                 if(string.IsNullOrWhiteSpace(vehicle.RegNr))
                 {
                     ModelState.AddModelError("RegNr", "Registration number is required");
-                    return View("Index", vehicle);
+                    return View("Create", vehicle);
                 }
                 if (vehicle.RegNr.Contains("-"))
                 {
                     ModelState.AddModelError("RegNr", "Registration number can not contain negative values");
-                    return View("Index", vehicle);
+                    return View("Create", vehicle);
                 }
                 _context.Add(vehicle);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+
+                //Success message will be dispalyed in CheckInSuccess view
+                ViewBag.SuccessMessage = $"{vehicle.RegNr}: Checked In Successflully";
+
+                return RedirectToAction("CheckInSuccess", new {regNr = vehicle.RegNr });
             }
-            return View("Index", vehicle);
+            return View("Create", vehicle);
         }
+
+        public IActionResult CheckInSuccess(string regNr)
+        {
+            ViewBag.RegNr = regNr;
+            return View("~/Views/FeedbackToUser/CheckInSuccess.cshtml");
+        }
+
 
         // GET: Vehicles/Edit/5
         public async Task<IActionResult> Edit(string id)
